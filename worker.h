@@ -8,13 +8,10 @@ namespace Demo {
         Q_OBJECT
 
     public:
-        explicit Worker(QObject* parent) : QThread(parent), m_running(false) {}
+        explicit Worker(QObject* parent) : QThread(parent) {}
         virtual void run() override;
 
     signals:
         void Progress(int progress);
-
-    private:
-        bool m_running;
     };
 };
