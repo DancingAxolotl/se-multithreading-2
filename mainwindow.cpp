@@ -45,7 +45,10 @@ void Demo::MainWindow::OnFinished()
 Demo::MainWindow::~MainWindow() {
     if (m_worker != nullptr) {
         m_worker->requestInterruption();
-        m_worker->wait(5000);
+        if (!m_worker->wait(5000)) {
+            m_worker->terminate();
+            m_worker->wait();
+        }
     }
     delete m_ui;
 }

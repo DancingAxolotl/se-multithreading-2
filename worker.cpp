@@ -8,7 +8,6 @@ namespace {
 
 void Demo::Worker::run()
 {
-    m_running = true;
     for (int i = 0; i < 10 && !isInterruptionRequested(); i++)
     {
         CallSomeUglyAPI();
