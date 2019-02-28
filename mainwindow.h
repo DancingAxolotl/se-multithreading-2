@@ -1,5 +1,7 @@
 #pragma once
 #include <QMainWindow>
+#include <QThread>
+#include "worker.h"
 
 namespace Ui {
     class MainWindow;
@@ -12,7 +14,7 @@ namespace Demo {
 
     public:
         explicit MainWindow();
-        ~MainWindow();
+        virtual ~MainWindow() override;
 
     public slots:
         void OnStartClicked();
@@ -23,9 +25,11 @@ namespace Demo {
     signals:
         void StartWork();
         void StopWork();
+    protected:
+        virtual void closeEvent(QCloseEvent* event) override;
 
     private:
         Ui::MainWindow* m_ui;
-        QThread* m_workerThread;
+        QThread m_workerThread;
     };
 };
