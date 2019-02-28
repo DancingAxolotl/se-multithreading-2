@@ -1,14 +1,11 @@
 #pragma once
 #include <QMainWindow>
-#include <memory>
 
 namespace Ui {
     class MainWindow;
 };
 
 namespace Demo {
-    class Worker;
-
     class MainWindow : public QMainWindow
     {
         Q_OBJECT
@@ -18,13 +15,17 @@ namespace Demo {
         ~MainWindow();
 
     public slots:
-        void OnStart();
-        void OnCancel();
+        void OnStartClicked();
+        void OnCancelClicked();
         void OnFinished();
         void OnProgress(int progress);
 
+    signals:
+        void StartWork();
+        void StopWork();
+
     private:
         Ui::MainWindow* m_ui;
-        Worker* m_worker;
+        QThread* m_workerThread;
     };
 };
