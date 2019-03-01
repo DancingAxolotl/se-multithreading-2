@@ -49,7 +49,6 @@ void Demo::MainWindow::OnFinished()
 
 void Demo::MainWindow::closeEvent(QCloseEvent* event)
 {
-    emit StopWork();
     m_workerThread.quit();
     if (!m_workerThread.wait(500)) {
         m_workerThread.terminate();
